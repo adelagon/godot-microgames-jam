@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwmmds663c0ba"]
+[gd_scene load_steps=6 format=3 uid="uid://dwmmds663c0ba"]
 
 [ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Player/player.gd" id="1_eqn14"]
 [ext_resource type="Texture2D" uid="uid://cj5agmrfdjkkp" path="res://games/shoot_the_aliens/assets/sprites/player_ship.png" id="2_fvsl7"]
+[ext_resource type="AudioStream" uid="uid://i7chp1tuu1xs" path="res://games/shoot_the_aliens/assets/sound/sfx_laser.ogg" id="3_6b4g5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c2jyb"]
 animations = [{
@@ -29,3 +30,6 @@ sprite_frames = SubResource("SpriteFrames_c2jyb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_i6afi")
+
+[node name="LaserSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6b4g5")

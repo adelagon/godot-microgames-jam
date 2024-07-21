@@ -22,7 +22,7 @@ func _process(delta):
 		#velocity.y -= 1
 		pass
 	if Input.is_action_pressed("button0"):
-		pass
+		$LaserSFX.play()
 	
 	# Prevent player from moving faster diagonally
 	if velocity.length() > 0:

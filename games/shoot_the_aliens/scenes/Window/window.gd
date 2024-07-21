@@ -45,7 +45,6 @@ func create_ufo(iter: int) -> Path2D:
 	var ufo = ufo_scene.instantiate()
 	ufo.speed = enemy_speed
 	ufo.path_follow = path_follow
-	print(ufo.speed)
 	path_follow.add_child(ufo)
 	path.add_child(path_follow)
 	return path
