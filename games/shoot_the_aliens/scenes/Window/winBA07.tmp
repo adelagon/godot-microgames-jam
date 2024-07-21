@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwwf18aujgkkq"]
+
+[ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Window/window.gd" id="1_24vav"]
+[ext_resource type="PackedScene" uid="uid://dwmmds663c0ba" path="res://games/shoot_the_aliens/scenes/Player/player.tscn" id="2_k6ybg"]
+
+[sub_resource type="PackedScene" id="PackedScene_iy2r1"]
+
+[sub_resource type="Curve2D" id="Curve2D_u3vp5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 640, 64, 0, 0, 0, 0, 0, 64)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_er5oi"]
+
+[node name="Window" type="Node"]
+script = ExtResource("1_24vav")
+difficulty = null
+enemy_scene = SubResource("PackedScene_iy2r1")
+
+[node name="Player" parent="." instance=ExtResource("2_k6ybg")]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(320, 450)
+
+[node name="UFOPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_u3vp5")
+
+[node name="UFOPathFollow2D" type="PathFollow2D" parent="UFOPath"]
+position = Vector2(0, 64)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_er5oi")

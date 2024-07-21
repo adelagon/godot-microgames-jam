@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://de6ee86vdnl7w"]
+
+[ext_resource type="Texture2D" uid="uid://bondnxxltmh7p" path="res://games/shoot_the_aliens/assets/sprites/ufo_blue.png" id="1_1k302"]
+[ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/UFO/ufo.gd" id="1_nnyxt"]
+[ext_resource type="Texture2D" uid="uid://dtiaqfx2h6607" path="res://games/shoot_the_aliens/assets/sprites/ufo_green.png" id="2_btwsv"]
+[ext_resource type="Texture2D" uid="uid://b5vyi88c2s0gh" path="res://games/shoot_the_aliens/assets/sprites/ufo_red.png" id="3_ded1n"]
+[ext_resource type="Texture2D" uid="uid://cdegg3xl1wdss" path="res://games/shoot_the_aliens/assets/sprites/ufo_yellow.png" id="4_xv5gt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qojse"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1k302")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_btwsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ded1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xv5gt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6x5rb"]
+radius = 21.0238
+
+[node name="UFO" type="Area2D"]
+script = ExtResource("1_nnyxt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_qojse")
+frame_progress = 0.146751
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6x5rb")

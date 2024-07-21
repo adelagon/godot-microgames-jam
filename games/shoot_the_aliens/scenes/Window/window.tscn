@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwwf18aujgkkq"]
+
+[ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Window/window.gd" id="1_24vav"]
+[ext_resource type="PackedScene" uid="uid://de6ee86vdnl7w" path="res://games/shoot_the_aliens/scenes/UFO/ufo.tscn" id="2_6j6y6"]
+[ext_resource type="PackedScene" uid="uid://dwmmds663c0ba" path="res://games/shoot_the_aliens/scenes/Player/player.tscn" id="2_k6ybg"]
+
+[node name="Window" type="Node"]
+script = ExtResource("1_24vav")
+ufo_scene = ExtResource("2_6j6y6")
+
+[node name="Player" parent="." instance=ExtResource("2_k6ybg")]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(320, 450)
