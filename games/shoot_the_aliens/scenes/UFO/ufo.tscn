@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://b5vyi88c2s0gh" path="res://games/shoot_the_aliens/assets/sprites/ufo_red.png" id="3_ded1n"]
 [ext_resource type="Texture2D" uid="uid://cdegg3xl1wdss" path="res://games/shoot_the_aliens/assets/sprites/ufo_yellow.png" id="4_xv5gt"]
 [ext_resource type="Texture2D" uid="uid://cslxw2jag4vbm" path="res://games/shoot_the_aliens/assets/sprites/explosion00.png" id="6_t8qxo"]
-[ext_resource type="AudioStream" uid="uid://dkie62g0m2y1u" path="res://games/shoot_the_aliens/assets/sounds/sfx_ufo_hit.ogg" id="6_vj7ha"]
 [ext_resource type="Texture2D" uid="uid://bsf20beve3rks" path="res://games/shoot_the_aliens/assets/sprites/explosion01.png" id="7_hdv5a"]
 [ext_resource type="Texture2D" uid="uid://bpjkwkyfab5sh" path="res://games/shoot_the_aliens/assets/sprites/explosion02.png" id="8_ec7nw"]
 [ext_resource type="Texture2D" uid="uid://o73lwcsw13v" path="res://games/shoot_the_aliens/assets/sprites/explosion03.png" id="9_gqxj1"]
@@ -15,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b3qgf8vsi3b7d" path="res://games/shoot_the_aliens/assets/sprites/explosion06.png" id="12_eipgl"]
 [ext_resource type="Texture2D" uid="uid://dmh2740fy06hq" path="res://games/shoot_the_aliens/assets/sprites/explosion07.png" id="13_kuugq"]
 [ext_resource type="Texture2D" uid="uid://djso5mmus2xro" path="res://games/shoot_the_aliens/assets/sprites/explosion08.png" id="14_rea4f"]
+[ext_resource type="AudioStream" uid="uid://csbxnmggrx7fm" path="res://games/shoot_the_aliens/assets/sounds/sfx_ufo_explosion.ogg" id="15_npfiq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qojse"]
 animations = [{
@@ -84,6 +84,7 @@ frame_progress = 0.681517
 shape = SubResource("CircleShape2D_6x5rb")
 
 [node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_vj7ha")
+stream = ExtResource("15_npfiq")
+volume_db = 10.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

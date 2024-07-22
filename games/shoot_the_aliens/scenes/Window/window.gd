@@ -56,6 +56,7 @@ func spawn_ufos() -> Array:
 	return ufos
 
 func new_game():
+	$AmbientSFX.play()
 	spawn_ufos()
 	$Player.position = $StartPosition.position
 	$Player.show()

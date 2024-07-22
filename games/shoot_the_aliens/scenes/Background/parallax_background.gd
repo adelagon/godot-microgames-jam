@@ -1,6 +1,6 @@
 extends ParallaxBackground
 
-var scroll_speed = 100
+var scroll_speed = 500
 
 
 func _process(delta) -> void:
