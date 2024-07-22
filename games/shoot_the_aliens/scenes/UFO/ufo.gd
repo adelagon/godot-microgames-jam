@@ -45,6 +45,7 @@ func _on_area_entered(area) -> void:
 	$AnimatedSprite2D.connect("animation_looped", self._on_animation_looped)
 	$HitSFX.play()
 	hit = true
+	ufo_hit.emit(self.get_instance_id())
 
 
 func _on_animation_looped() -> void:

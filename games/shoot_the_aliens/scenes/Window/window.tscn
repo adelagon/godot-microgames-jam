@@ -8,6 +8,7 @@
 
 [node name="Window" type="Node"]
 script = ExtResource("1_24vav")
+difficulty = 5
 ufo_scene = ExtResource("2_6j6y6")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("3_xv545")]

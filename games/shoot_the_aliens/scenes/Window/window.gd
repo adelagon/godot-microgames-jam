@@ -3,15 +3,29 @@ extends Node
 @export var difficulty = 1
 @export var ufo_scene: PackedScene
 
+var ufos = []
+var num_ufos = 2
+var min_ufo_speed = 50
+var max_ufo_speed = 100
+
 var rng = RandomNumberGenerator.new()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+signal player_won
+
+
+func _ready() -> void:
 	new_game()
 
 
-func game_over():
-	pass
+func _on_ufo_hit(instance_id: int):
+	ufos.erase(instance_id)
+	if not ufos:
+		game_over()
+
+
+func game_over() -> void:
+	print("Game Over")
+	player_won.emit()
 	
 
 func create_ufo(iter: int) -> Path2D:
@@ -36,10 +50,12 @@ func create_ufo(iter: int) -> Path2D:
 	
 	# Set Path to Follow & Speed
 	var path_follow = PathFollow2D.new()
-	var enemy_speed = rng.randf_range(100, 200)
+	var ufo_speed = rng.randf_range(min_ufo_speed, max_ufo_speed)
 	var ufo = ufo_scene.instantiate()
-	ufo.speed = enemy_speed
+	ufo.speed = ufo_speed
 	ufo.path_follow = path_follow
+	ufo.connect("ufo_hit", self._on_ufo_hit)
+	ufos.append(ufo.get_instance_id())
 	path_follow.add_child(ufo)
 	path.add_child(path_follow)
 	return path
@@ -47,15 +63,31 @@ func create_ufo(iter: int) -> Path2D:
 
 func spawn_ufos() -> Array:
 	# Default Values
-	var num_ufos = 3
+	if difficulty == 2:
+		num_ufos = 2
+		min_ufo_speed = 100
+		max_ufo_speed = 200
+	elif difficulty == 3:
+		num_ufos = 3
+		min_ufo_speed = 100
+		max_ufo_speed = 200
+	elif difficulty == 4:
+		num_ufos = 3
+		min_ufo_speed = 200
+		max_ufo_speed = 300
+	elif difficulty == 5:
+		num_ufos = 4
+		min_ufo_speed = 200
+		max_ufo_speed = 300
 	
-	var ufos = []
+
 	for n in num_ufos:
 		var ufo = create_ufo(n)
 		add_child(ufo)
 	return ufos
 
-func new_game():
+
+func new_game() -> void:
 	$AmbientSFX.play()
 	spawn_ufos()
 	$Player.position = $StartPosition.position
