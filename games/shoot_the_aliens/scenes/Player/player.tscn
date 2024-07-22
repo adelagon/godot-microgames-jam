@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwmmds663c0ba"]
+[gd_scene load_steps=7 format=3 uid="uid://dwmmds663c0ba"]
 
 [ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Player/player.gd" id="1_eqn14"]
 [ext_resource type="Texture2D" uid="uid://cj5agmrfdjkkp" path="res://games/shoot_the_aliens/assets/sprites/player_ship.png" id="2_fvsl7"]
-[ext_resource type="AudioStream" uid="uid://i7chp1tuu1xs" path="res://games/shoot_the_aliens/assets/sound/sfx_laser.ogg" id="3_6b4g5"]
+[ext_resource type="PackedScene" uid="uid://cpvsy07hg0gya" path="res://games/shoot_the_aliens/scenes/Laser/laser.tscn" id="2_khs4r"]
+[ext_resource type="AudioStream" uid="uid://i7chp1tuu1xs" path="res://games/shoot_the_aliens/assets/sounds/sfx_laser.ogg" id="4_o5l5u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_c2jyb"]
 animations = [{
@@ -22,6 +23,7 @@ height = 26.0
 [node name="Player" type="Area2D"]
 position = Vector2(1, -1)
 script = ExtResource("1_eqn14")
+laser_scene = ExtResource("2_khs4r")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -31,5 +33,8 @@ sprite_frames = SubResource("SpriteFrames_c2jyb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_i6afi")
 
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, -20)
+
 [node name="LaserSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_6b4g5")
+stream = ExtResource("4_o5l5u")
