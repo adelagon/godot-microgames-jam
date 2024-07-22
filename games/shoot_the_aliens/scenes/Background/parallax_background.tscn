@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://btxxksohhn4i3"]
+
+[ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Background/parallax_background.gd" id="1_llhwt"]
+[ext_resource type="Texture2D" uid="uid://k1dl60fp1li8" path="res://games/shoot_the_aliens/assets/backgrounds/dark_purple.png" id="2_2vaip"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_llhwt")
+
+[node name="Space" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(0, 480)
+
+[node name="Sprite2D" type="Sprite2D" parent="Space"]
+position = Vector2(320, 240)
+texture = ExtResource("2_2vaip")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 480)
