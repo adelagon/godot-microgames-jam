@@ -10,8 +10,9 @@ var max_ufo_speed = 100
 
 var rng = RandomNumberGenerator.new()
 
-signal player_won
+signal game_finished
 
+const directions = "Shoot the Aliens!"
 
 func _ready() -> void:
 	new_game()
@@ -24,8 +25,8 @@ func _on_ufo_hit(instance_id: int):
 
 
 func game_over() -> void:
-	print("Game Over")
-	player_won.emit()
+	print("Game Over: ", self.get_instance_id())
+	game_finished.emit(self.get_instance_id())
 	
 
 func create_ufo(iter: int) -> Path2D:

@@ -1,12 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://cwwf18aujgkkq"]
 
-[ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Window/window.gd" id="1_24vav"]
+[ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Game/game.gd" id="1_24vav"]
 [ext_resource type="PackedScene" uid="uid://de6ee86vdnl7w" path="res://games/shoot_the_aliens/scenes/UFO/ufo.tscn" id="2_6j6y6"]
 [ext_resource type="PackedScene" uid="uid://dwmmds663c0ba" path="res://games/shoot_the_aliens/scenes/Player/player.tscn" id="2_k6ybg"]
 [ext_resource type="PackedScene" uid="uid://btxxksohhn4i3" path="res://games/shoot_the_aliens/scenes/Background/parallax_background.tscn" id="3_xv545"]
 [ext_resource type="AudioStream" uid="uid://coojc15w1x8ur" path="res://games/shoot_the_aliens/assets/sounds/sfx_ambient.ogg" id="5_nmx28"]
 
-[node name="Window" type="Node"]
+[node name="Game" type="Node"]
 script = ExtResource("1_24vav")
 difficulty = 5
 ufo_scene = ExtResource("2_6j6y6")

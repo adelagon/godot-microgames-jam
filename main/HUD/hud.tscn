@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://sdaasaqqba8c"]
+
+[ext_resource type="Script" path="res://main/HUD/hud.gd" id="1_bqajo"]
+[ext_resource type="Texture2D" uid="uid://c4bqhyt7afxru" path="res://main/HUD/assets/sprites/metal_panel.png" id="1_fvai0"]
+[ext_resource type="FontFile" uid="uid://b8eyel1firp2d" path="res://main/HUD/assets/fonts/kenvector_future.ttf" id="2_3nsa4"]
+
+[node name="HUD" type="Node2D"]
+script = ExtResource("1_bqajo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 15.5)
+scale = Vector2(1, 0.66)
+texture = ExtResource("1_fvai0")
+
+[node name="MessageContainer" type="CenterContainer" parent="."]
+offset_top = -1.0
+offset_right = 528.0
+offset_bottom = 31.0
+
+[node name="Message" type="Label" parent="MessageContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_3nsa4")
+text = "Messages"
+horizontal_alignment = 1
+
+[node name="LivesContainer" type="CenterContainer" parent="."]
+offset_left = 544.0
+offset_right = 640.0
+offset_bottom = 31.0
+
+[node name="Lives" type="Label" parent="LivesContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_3nsa4")
+text = "Lives
+"
