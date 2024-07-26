@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwwf18aujgkkq"]
+
+[ext_resource type="Script" path="res://games/shoot_the_aliens/scenes/Game/game.gd" id="1_24vav"]
+[ext_resource type="PackedScene" uid="uid://de6ee86vdnl7w" path="res://games/shoot_the_aliens/scenes/UFO/ufo.tscn" id="2_6j6y6"]
+[ext_resource type="PackedScene" uid="uid://dwmmds663c0ba" path="res://games/shoot_the_aliens/scenes/Player/player.tscn" id="2_k6ybg"]
+[ext_resource type="PackedScene" uid="uid://btxxksohhn4i3" path="res://games/shoot_the_aliens/scenes/Background/parallax_background.tscn" id="3_xv545"]
+[ext_resource type="AudioStream" uid="uid://coojc15w1x8ur" path="res://games/shoot_the_aliens/assets/sounds/sfx_ambient.ogg" id="5_nmx28"]
+[ext_resource type="AudioStream" uid="uid://de4b2dsu5ql6w" path="res://games/shoot_the_aliens/assets/sounds/sfx_won.ogg" id="6_lsroy"]
+[ext_resource type="AudioStream" uid="uid://ykkgojdnummg" path="res://games/shoot_the_aliens/assets/sounds/sfx_lost.ogg" id="7_bxwys"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_24vav")
+difficulty = 5
+ufo_scene = ExtResource("2_6j6y6")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_xv545")]
+
+[node name="Player" parent="." instance=ExtResource("2_k6ybg")]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(320, 450)
+
+[node name="AmbientSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nmx28")
+
+[node name="WonSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lsroy")
+
+[node name="LostSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bxwys")

@@ -5,6 +5,7 @@ extends Area2D
 @export var laser_scene: PackedScene
 
 var screen_size
+var disable_movement = false
 
 
 func shoot_laser_v1(position):
@@ -52,6 +53,8 @@ func _ready() -> void:
 
 
 func _process(delta) -> void:
+	if disable_movement:
+		return
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1

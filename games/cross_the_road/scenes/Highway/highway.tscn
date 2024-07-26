@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://mypvp50b6qd1"]
+
+[ext_resource type="Texture2D" uid="uid://b5l5qp0xbo5s6" path="res://games/cross_the_road/assets/sprites/Highway.png" id="1_w0keg"]
+[ext_resource type="Script" path="res://games/cross_the_road/scenes/Highway/highway.gd" id="2_kn3hd"]
+[ext_resource type="PackedScene" uid="uid://dr86iwwrpd80c" path="res://games/cross_the_road/scenes/Vehicles/vehicle.tscn" id="3_g1qof"]
+[ext_resource type="AudioStream" uid="uid://bxa63jggmdy77" path="res://games/cross_the_road/assets/sounds/traffic.wav" id="4_5eicw"]
+
+[sub_resource type="Curve2D" id="Curve2D_gakok"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 120, 0, 0, 0, 0, 672, 120)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_8652g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 208, 0, 0, 0, 0, 672, 208)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_mmut6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 296, 0, 0, 0, 0, 672, 296)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_yenoa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 384, 0, 0, 0, 0, 672, 384)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6mf5"]
+size = Vector2(642, 32)
+
+[node name="Highway" type="TextureRect" groups=["paths"]]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_w0keg")
+script = ExtResource("2_kn3hd")
+vehicle_scene = ExtResource("3_g1qof")
+
+[node name="Path1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_gakok")
+
+[node name="Path2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_8652g")
+
+[node name="Path3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_mmut6")
+
+[node name="Path4" type="Path2D" parent="."]
+curve = SubResource("Curve2D_yenoa")
+
+[node name="TrafficSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5eicw")
+autoplay = true
+
+[node name="FinishLine" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine"]
+position = Vector2(320, 24)
+shape = SubResource("RectangleShape2D_b6mf5")
+
+[connection signal="area_entered" from="FinishLine" to="." method="_on_finish_line_area_entered"]

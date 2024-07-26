@@ -1,5 +1,5 @@
 extends Area2D
-class_name Laser
+#class_name Laser
 
 var speed = 400
 

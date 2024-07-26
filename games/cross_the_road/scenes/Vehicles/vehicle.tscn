@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr86iwwrpd80c"]
+
+[ext_resource type="Script" path="res://games/cross_the_road/scenes/Vehicles/vehicle.gd" id="1_u7xs8"]
+
+[node name="Vehicle" type="Area2D"]
+script = ExtResource("1_u7xs8")
+
+[node name="Sprite" type="Sprite2D" parent="."]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgwl1mor2x436"]
+
+[ext_resource type="PackedScene" uid="uid://mypvp50b6qd1" path="res://games/cross_the_road/scenes/Highway/highway.tscn" id="1_21tu0"]
+[ext_resource type="Script" path="res://games/cross_the_road/scenes/Game/game.gd" id="1_ojd31"]
+[ext_resource type="PackedScene" uid="uid://hkl8rj8xt3ng" path="res://games/cross_the_road/scenes/Player/player.tscn" id="3_mfc2j"]
+[ext_resource type="AudioStream" uid="uid://wlvwocgkwpig" path="res://games/cross_the_road/assets/sounds/lost.ogg" id="4_vo273"]
+[ext_resource type="AudioStream" uid="uid://cm6gq7l5lhu51" path="res://games/cross_the_road/assets/sounds/won.ogg" id="5_ifulc"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_ojd31")
+
+[node name="Highway" parent="." instance=ExtResource("1_21tu0")]
+
+[node name="Player" parent="." instance=ExtResource("3_mfc2j")]
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(312, 464)
+
+[node name="LostSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vo273")
+
+[node name="WonSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ifulc")

@@ -13,21 +13,39 @@ var rng = RandomNumberGenerator.new()
 signal game_finished
 
 const directions = "Shoot the Aliens!"
+const timed = true
+
+var player_won = false
+var end_game = false
+var game_ended = false
 
 func _ready() -> void:
 	new_game()
 
 
-func _on_ufo_hit(instance_id: int):
+func _process(delta) -> void:
+	if end_game:
+		player_won = false
+		game_over()
+
+
+func _on_ufo_hit(instance_id: int) -> void:
 	ufos.erase(instance_id)
 	if not ufos:
+		player_won = true
 		game_over()
 
 
 func game_over() -> void:
-	print("Game Over: ", self.get_instance_id())
-	game_finished.emit(self.get_instance_id())
-	
+	if not game_ended:
+		game_ended = true
+		$Player.disable_movement = true
+		if player_won:
+			$WonSFX.play()
+			game_finished.emit(self.get_instance_id())
+		else:
+			$LostSFX.play()
+
 
 func create_ufo(iter: int) -> Path2D:
 	# Set points
@@ -93,3 +111,4 @@ func new_game() -> void:
 	spawn_ufos()
 	$Player.position = $StartPosition.position
 	$Player.show()
+

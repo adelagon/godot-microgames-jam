@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://hkl8rj8xt3ng"]
+
+[ext_resource type="Script" path="res://games/cross_the_road/scenes/Player/player.gd" id="1_5oej6"]
+[ext_resource type="Texture2D" uid="uid://bleph3dd73r37" path="res://games/cross_the_road/assets/sprites/player_hit.png" id="2_ei21p"]
+[ext_resource type="Texture2D" uid="uid://bob3s6ltrs3ra" path="res://games/cross_the_road/assets/sprites/player_front.png" id="3_vu1qj"]
+[ext_resource type="Texture2D" uid="uid://d2qttnjvb1sx2" path="res://games/cross_the_road/assets/sprites/player_walk_x_1.png" id="4_ifwnx"]
+[ext_resource type="Texture2D" uid="uid://duyh7adddia0f" path="res://games/cross_the_road/assets/sprites/player_walk_x_2.png" id="5_7s5og"]
+[ext_resource type="Texture2D" uid="uid://bma2obbero3ra" path="res://games/cross_the_road/assets/sprites/player_walk_y_1.png" id="6_rmx5r"]
+[ext_resource type="Texture2D" uid="uid://d080vpu1yeb2" path="res://games/cross_the_road/assets/sprites/player_walk_y_2.png" id="7_3mfhm"]
+[ext_resource type="AudioStream" uid="uid://8560eeavt1e8" path="res://games/cross_the_road/assets/sounds/footstep.ogg" id="8_ib4c5"]
+[ext_resource type="AudioStream" uid="uid://b1fut4cdyl0ft" path="res://games/cross_the_road/assets/sounds/splat.wav" id="9_7iwf5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_htc4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ei21p")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_vu1qj")
+}],
+"loop": true,
+"name": &"start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ifwnx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7s5og")
+}],
+"loop": true,
+"name": &"walk_horizontal",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_rmx5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3mfhm")
+}],
+"loop": true,
+"name": &"walk_vertical",
+"speed": 24.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejhks"]
+radius = 8.0
+height = 32.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_5oej6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_htc4r")
+animation = &"hit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ejhks")
+
+[node name="FootstepSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ib4c5")
+
+[node name="FootstepTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="SplatSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_7iwf5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

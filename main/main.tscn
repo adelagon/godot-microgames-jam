@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx4v1g1dd80c"]
+[gd_scene load_steps=5 format=3 uid="uid://bx4v1g1dd80c"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_68gmr"]
 [ext_resource type="PackedScene" uid="uid://cwwf18aujgkkq" path="res://games/shoot_the_aliens/scenes/Game/game.tscn" id="1_vyh18"]
 [ext_resource type="PackedScene" uid="uid://sdaasaqqba8c" path="res://main/HUD/hud.tscn" id="2_c47sq"]
+[ext_resource type="PackedScene" uid="uid://cgwl1mor2x436" path="res://games/cross_the_road/scenes/Game/game.tscn" id="3_psper"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_68gmr")
 shoot_the_aliens = ExtResource("1_vyh18")
+cross_the_road = ExtResource("3_psper")
 
 [node name="HUD" parent="." instance=ExtResource("2_c47sq")]
 
@@ -16,5 +18,9 @@ wait_time = 3.0
 [node name="MicroGameTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="MicroGameTransitionTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="StartGameTimer" to="." method="_on_start_game_timer_timeout"]
 [connection signal="timeout" from="MicroGameTimer" to="." method="_on_micro_game_timer_timeout"]
+[connection signal="timeout" from="MicroGameTransitionTimer" to="." method="_on_micro_game_transition_timer_timeout"]
