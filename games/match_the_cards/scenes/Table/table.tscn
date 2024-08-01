@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://seflermranpj"]
+
+[ext_resource type="Script" path="res://games/match_the_cards/scenes/Table/table.gd" id="1_3a82h"]
+[ext_resource type="PackedScene" uid="uid://y3sgayjt23t8" path="res://games/match_the_cards/scenes/Card/card.tscn" id="2_2rs0p"]
+
+[node name="Table" type="TextureRect"]
+offset_right = 640.0
+offset_bottom = 480.0
+script = ExtResource("1_3a82h")
+card_scene = ExtResource("2_2rs0p")
+
+[node name="TableContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 640.0
+offset_bottom = 440.0
+
+[node name="CardGridContainer" type="GridContainer" parent="TableContainer"]
+layout_mode = 2

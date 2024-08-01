@@ -2,6 +2,7 @@ extends Node
 
 @export var shoot_the_aliens: PackedScene
 @export var cross_the_road: PackedScene
+@export var match_the_cards: PackedScene
 
 var micro_games = []
 var current_micro_game
@@ -11,6 +12,7 @@ func _ready():
 	# Collate all available micro games
 	micro_games.append(shoot_the_aliens)
 	micro_games.append(cross_the_road)
+	micro_games.append(match_the_cards)
 	$HUD.set_message("The Microgames will start in a few seconds")
 	$HUD.set_lives(player_lives)
 	$StartGameTimer.start()

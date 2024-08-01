@@ -2,7 +2,7 @@ extends TextureRect
 
 @export var vehicle_scene: PackedScene
 var vehicle_speed = 150
-var max_vehicles_on_screen = 10
+var max_vehicles_on_screen = 20
 var vehicle_textures = []
 var vehicles = []
 
