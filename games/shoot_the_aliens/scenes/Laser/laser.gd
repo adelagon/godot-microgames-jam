@@ -8,5 +8,5 @@ func _physics_process(delta) -> void:
 	position += -transform.y * speed * delta
 
 
-func _on_area_exited(area) -> void:
+func _on_area_exited(_area) -> void:
 	self.queue_free()

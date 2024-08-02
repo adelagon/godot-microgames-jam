@@ -16,8 +16,8 @@ func _set_num_pairs(value: int) -> void:
 
 func load_deck() -> void:
 	for file_name in DirAccess.get_files_at("res://games/match_the_cards/assets/sprites/cards/deck/"):
-		if file_name.get_extension() == "png":
-			var fn = file_name.replace(".png", "")
+		if file_name.get_extension() == "import":
+			var fn = file_name.replace(".png.import", "")
 			deck.append(fn)
 
 
@@ -27,11 +27,11 @@ func create_card(card_value: String) -> TextureRect:
 	return card
 
 
-func initialize_table(num_pairs: int):
+func initialize_table(n):
 	# Select cards at random
 	var card_selection = deck
 	card_selection.shuffle()
-	for card_value in card_selection.slice(0, num_pairs):
+	for card_value in card_selection.slice(0, n):
 		# Add two of a kind
 		played_cards.append(create_card(card_value))
 		played_cards.append(create_card(card_value))

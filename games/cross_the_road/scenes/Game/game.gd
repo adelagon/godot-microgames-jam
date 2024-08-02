@@ -31,10 +31,6 @@ func _ready():
 	new_game()
 
 
-func _process(delta):
-	pass
-
-
 func _on_player_crossed():
 	player_won = true
 	game_over()

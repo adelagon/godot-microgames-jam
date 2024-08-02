@@ -1,11 +1,10 @@
 extends TextureRect
 
 var card_value
-
-var i_cursor_selected = load("res://games/match_the_cards/assets/sprites/cursor_selected.png")
-var	i_cursor_unselected = load("res://games/match_the_cards/assets/sprites/cursor_unselected.png")
-var i_card_front = load("res://games/match_the_cards/assets/sprites/cards/card_empty.png")
-var	i_card_back = load("res://games/match_the_cards/assets/sprites/cards/card_back.png")
+var i_cursor_selected
+var	i_cursor_unselected
+var i_card_front
+var	i_card_back
 
 signal card_focus_entered
 signal card_focus_exited
@@ -31,15 +30,24 @@ func _get_card_disabled():
 	return card_disabled
 	
 func _set_card_disabled(value: bool):
-	#if value:
-	#	$CenterContainer/Texture.focus_mode = FOCUS_NONE
 	card_disabled = value
 
-func _ready() -> void:
-	# Set the card image basing from the given card_value
-	i_card_front = load("res://games/match_the_cards/assets/sprites/cards/deck/" + card_value + ".png")
+
+func load_card_textures() -> void:
+	var cursor_selected_res = load("res://games/match_the_cards/assets/sprites/cursor_selected.png")
+	i_cursor_selected = ImageTexture.create_from_image(cursor_selected_res.get_image())
+	var cursor_unselected_res = load("res://games/match_the_cards/assets/sprites/cursor_unselected.png")
+	i_cursor_unselected = ImageTexture.create_from_image(cursor_unselected_res.get_image())
+	var card_front_res = load("res://games/match_the_cards/assets/sprites/cards/deck/" + card_value + ".png")
+	i_card_front = ImageTexture.create_from_image(card_front_res.get_image())
+	var card_back_res = load("res://games/match_the_cards/assets/sprites/cards/card_back.png")
+	i_card_back = ImageTexture.create_from_image(card_back_res.get_image())
 	$CenterContainer/Texture.texture = i_card_back
 	$CenterContainer/Texture.focus_mode = FOCUS_ALL
+
+
+func _ready() -> void:
+	load_card_textures()
 
 
 func _on_focus_entered():

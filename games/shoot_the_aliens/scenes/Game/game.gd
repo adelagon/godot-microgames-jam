@@ -23,7 +23,7 @@ func _ready() -> void:
 	new_game()
 
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	if end_game:
 		player_won = false
 		game_over()

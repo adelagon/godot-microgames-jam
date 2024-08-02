@@ -26,7 +26,7 @@ func _on_card_selected(card: TextureRect):
 	selected_card = card
 
 
-func _on_card_unselected(card: TextureRect):
+func _on_card_unselected(_card: TextureRect):
 	pass
 
 
@@ -49,9 +49,7 @@ func _process(_delta):
 		previous_card = latest_card
 		latest_card = selected_card
 
-		print("Previous: ", previous_card.card_value, " Latest: ", latest_card.card_value)
 		if previous_card.card_value == latest_card.card_value:
-			print("Matched!")
 			latest_card.hide_card = false
 			latest_card.disable_card = true
 			latest_card = null
@@ -65,7 +63,7 @@ func _process(_delta):
 		else:
 			previous_card.hide_card = true
 			$SFXMismatch.play()
-			print("Didn't Match")
+
 
 func game_over():
 	player_won = true

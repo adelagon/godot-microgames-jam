@@ -10,16 +10,12 @@ var player_lives = 5
 
 func _ready():
 	# Collate all available micro games
-	micro_games.append(shoot_the_aliens)
-	micro_games.append(cross_the_road)
+	#micro_games.append(shoot_the_aliens)
+	#micro_games.append(cross_the_road)
 	micro_games.append(match_the_cards)
 	$HUD.set_message("The Microgames will start in a few seconds")
 	$HUD.set_lives(player_lives)
 	$StartGameTimer.start()
-
-
-func _process(delta):
-	pass
 
 
 # Starts a new random micro game
@@ -48,7 +44,7 @@ func player_lost():
 
 
 # Triggered when microgame finishes
-func _on_micro_game_finished(instance_id: int):
+func _on_micro_game_finished(_instance_id: int):
 	if current_micro_game.player_won:
 		player_won()
 	else:

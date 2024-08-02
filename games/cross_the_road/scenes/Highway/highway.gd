@@ -15,7 +15,8 @@ func load_vehicle_textures() -> void:
 	for file_name in DirAccess.get_files_at("res://games/cross_the_road/assets/sprites/vehicles/"):
 		if file_name.get_extension() == "import":
 			var fn = file_name.replace(".import", "")
-			var image = Image.load_from_file("res://games/cross_the_road/assets/sprites/vehicles/" + fn)
+			var loaded_texture = load("res://games/cross_the_road/assets/sprites/vehicles/" + fn)
+			var image = loaded_texture.get_image()
 			image.resize_to_po2()
 			vehicle_textures.append(ImageTexture.create_from_image(image))
 
@@ -63,10 +64,9 @@ func _on_vehicle_passed(vehicle: Area2D):
 	vehicles.erase(vehicle)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	fill_highway()
 
 
-func _on_finish_line_area_entered(area):
+func _on_finish_line_area_entered(_area):
 	player_crossed.emit()

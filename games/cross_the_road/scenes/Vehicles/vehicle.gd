@@ -11,9 +11,9 @@ var rng = RandomNumberGenerator.new()
 signal vehicle_passed
 
 
-func set_texture_with_collision(texture: ImageTexture) -> void:
+func set_texture_with_collision(txt: ImageTexture) -> void:
 	$Sprite.texture = texture
-	var image = texture.get_image()
+	var image = txt.get_image()
 	var bitmap = BitMap.new()
 	bitmap.create_from_image_alpha(image)
 	var polys = bitmap.opaque_to_polygons(Rect2(Vector2.ZERO, image.get_size()), 0.0)
