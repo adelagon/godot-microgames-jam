@@ -34,7 +34,7 @@ func _process(delta) -> void:
 		print("exploded")
 
 
-func _on_area_entered(_area) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	# Ignore if already hit
 	if hit:
 		return

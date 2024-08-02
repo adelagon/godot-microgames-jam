@@ -11,7 +11,7 @@ var previous_card # the previous card that was flipped
 
 signal game_finished
 
-func _ready():
+func _ready() -> void:
 	# Set the table
 	$Table.pairs = num_pairs
 	var cards = $Table/TableContainer/CardGridContainer.get_children()
@@ -22,15 +22,15 @@ func _ready():
 		card.connect("card_focus_exited", _on_card_unselected)
 
 
-func _on_card_selected(card: TextureRect):
+func _on_card_selected(card: TextureRect) -> void:
 	selected_card = card
 
 
-func _on_card_unselected(_card: TextureRect):
+func _on_card_unselected(_card: TextureRect) -> void:
 	pass
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	if Input.is_action_just_pressed("button0"):
 		# Ignore if selected card is already disabled
 		$SFXMove.play()
@@ -65,6 +65,6 @@ func _process(_delta):
 			$SFXMismatch.play()
 
 
-func game_over():
+func game_over() -> void:
 	player_won = true
 	game_finished.emit(self.get_instance_id())

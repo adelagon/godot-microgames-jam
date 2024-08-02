@@ -21,7 +21,7 @@ func load_vehicle_textures() -> void:
 			vehicle_textures.append(ImageTexture.create_from_image(image))
 
 
-func create_vehicle(path: Path2D, randomize_progress: bool = false):
+func create_vehicle(path: Path2D, randomize_progress: bool = false) -> Area2D:
 	var vehicle = vehicle_scene.instantiate()
 	if path.name == "Path1":
 		vehicle.speed = vehicle_speed * 2.0
@@ -54,19 +54,19 @@ func fill_highway(initial: bool = false) -> void:
 		vehicles.append(vehicle)
 
 
-func _ready():
+func _ready() -> void:
 	load_vehicle_textures()
 	fill_highway(true)
 
 
-func _on_vehicle_passed(vehicle: Area2D):
+func _on_vehicle_passed(vehicle: Area2D) -> void:
 	vehicle.get_parent().queue_free()
 	vehicles.erase(vehicle)
 
 
-func _process(_delta):
+func _process(_delta) -> void:
 	fill_highway()
 
 
-func _on_finish_line_area_entered(_area):
+func _on_finish_line_area_entered(_area) -> void:
 	player_crossed.emit()

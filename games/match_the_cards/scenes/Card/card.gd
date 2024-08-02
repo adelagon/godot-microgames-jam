@@ -26,10 +26,10 @@ func _set_card_hidden(value: bool) -> void:
 var card_disabled : bool = false
 var disable_card : bool = card_disabled: get = _get_card_disabled, set = _set_card_disabled
 
-func _get_card_disabled():
+func _get_card_disabled() -> bool:
 	return card_disabled
 	
-func _set_card_disabled(value: bool):
+func _set_card_disabled(value: bool) -> void:
 	card_disabled = value
 
 
@@ -50,11 +50,11 @@ func _ready() -> void:
 	load_card_textures()
 
 
-func _on_focus_entered():
+func _on_focus_entered() -> void:
 	self.texture = i_cursor_selected
 	card_focus_entered.emit(self)
 
 
-func _on_focus_exited():
+func _on_focus_exited() -> void:
 	self.texture = i_cursor_unselected
 	card_focus_exited.emit(self)

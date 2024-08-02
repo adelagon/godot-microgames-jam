@@ -9,13 +9,13 @@ var stopped = false
 signal player_hit
 
 
-func _ready():
+func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	$AnimatedSprite2D.play("start")
 	$FootstepTimer.start(0.2)
 
 
-func _process(delta):
+func _process(delta) -> void:
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right") and not stopped:
 		velocity.x += 1
@@ -46,7 +46,7 @@ func _process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 
-func _on_area_entered(area):
+func _on_area_entered(area) -> void:
 	if area.name == "Vehicle":
 		$AnimatedSprite2D.play("hit")
 		$SplatSFX.play()

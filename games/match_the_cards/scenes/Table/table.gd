@@ -27,7 +27,7 @@ func create_card(card_value: String) -> TextureRect:
 	return card
 
 
-func initialize_table(n):
+func initialize_table(n: int) -> void:
 	# Select cards at random
 	var card_selection = deck
 	card_selection.shuffle()

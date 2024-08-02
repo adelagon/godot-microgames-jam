@@ -8,10 +8,10 @@ var micro_games = []
 var current_micro_game
 var player_lives = 5
 
-func _ready():
+func _ready() -> void:
 	# Collate all available micro games
-	#micro_games.append(shoot_the_aliens)
-	#micro_games.append(cross_the_road)
+	micro_games.append(shoot_the_aliens)
+	micro_games.append(cross_the_road)
 	micro_games.append(match_the_cards)
 	$HUD.set_message("The Microgames will start in a few seconds")
 	$HUD.set_lives(player_lives)
@@ -19,7 +19,7 @@ func _ready():
 
 
 # Starts a new random micro game
-func _on_start_game_timer_timeout():
+func _on_start_game_timer_timeout() -> void:
 	$StartGameTimer.stop()
 	var micro_game = micro_games.pick_random()
 	current_micro_game = micro_game.instantiate()
@@ -30,11 +30,11 @@ func _on_start_game_timer_timeout():
 		$MicroGameTimer.start()
 	
 
-func player_won():
+func player_won() -> void:
 	$HUD.set_message("SUCCESS! Get ready for the next game!")
 
 
-func player_lost():
+func player_lost() -> void:
 	player_lives -= 1
 	$HUD.set_message("FAILED! Get ready for the next game!")
 	$HUD.set_lives(player_lives)
@@ -44,7 +44,7 @@ func player_lost():
 
 
 # Triggered when microgame finishes
-func _on_micro_game_finished(_instance_id: int):
+func _on_micro_game_finished(_instance_id: int) -> void:
 	if current_micro_game.player_won:
 		player_won()
 	else:
@@ -54,20 +54,20 @@ func _on_micro_game_finished(_instance_id: int):
 
 
 # Triggered when player failed to finish a timed game
-func _on_micro_game_timer_timeout():
+func _on_micro_game_timer_timeout() -> void:
 	current_micro_game.end_game = true
 	player_lost()
 	$MicroGameTimer.stop()
 	$MicroGameTransitionTimer.start()
 
 
-func _on_micro_game_transition_timer_timeout():
+func _on_micro_game_transition_timer_timeout() -> void:
 	current_micro_game.queue_free()
 	$MicroGameTransitionTimer.stop()
 	$StartGameTimer.start()
 
 
-func game_over():
+func game_over() -> void:
 	$HUD.set_message("GAME OVER!")
 	$MicroGameTransitionTimer.stop()
 	$MicroGameTimer.stop()
