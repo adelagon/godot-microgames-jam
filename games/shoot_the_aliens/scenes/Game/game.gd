@@ -1,50 +1,48 @@
-extends Node
+extends Microgame
 
-@export var difficulty = 1
 @export var ufo_scene: PackedScene
 
 var ufos = []
 var num_ufos = 2
 var min_ufo_speed = 50
 var max_ufo_speed = 100
+var score = 0
 
 var rng = RandomNumberGenerator.new()
-
-signal game_finished
-
-const directions = "Shoot the Aliens!"
-const timed = true
-
-var player_won = false
-var end_game = false
 var game_ended = false
 
+
+### Overrides
+func game_over(_meta: Dictionary = {}) -> void:
+	if not game_ended:
+		game_ended = true
+		$Player.disable_movement = true
+		if won:
+			$WonSFX.play()
+		else:
+			$LostSFX.play()
+		super.game_over({"score": score})
+
+
+func new_game() -> void:
+	$AmbientSFX.play()
+	spawn_ufos()
+	$Player.position = $StartPosition.position
+	$Player.show()
+	super.new_game()
+### End Overrides
+
+### Game logic
 func _ready() -> void:
 	new_game()
 
 
-func _process(_delta) -> void:
-	if end_game:
-		player_won = false
-		game_over()
-
-
 func _on_ufo_hit(instance_id: int) -> void:
 	ufos.erase(instance_id)
+	score += 1
 	if not ufos:
-		player_won = true
+		won = true
 		game_over()
-
-
-func game_over() -> void:
-	if not game_ended:
-		game_ended = true
-		$Player.disable_movement = true
-		if player_won:
-			$WonSFX.play()
-			game_finished.emit(self.get_instance_id())
-		else:
-			$LostSFX.play()
 
 
 func create_ufo(iter: int) -> Path2D:
@@ -82,23 +80,10 @@ func create_ufo(iter: int) -> Path2D:
 
 func spawn_ufos() -> Array:
 	# Default Values
-	if difficulty == 2:
-		num_ufos = 2
-		min_ufo_speed = 100
-		max_ufo_speed = 200
-	elif difficulty == 3:
-		num_ufos = 3
-		min_ufo_speed = 100
-		max_ufo_speed = 200
-	elif difficulty == 4:
-		num_ufos = 3
-		min_ufo_speed = 200
-		max_ufo_speed = 300
-	elif difficulty == 5:
-		num_ufos = 4
-		min_ufo_speed = 200
-		max_ufo_speed = 300
-	
+	print(difficulty)
+	num_ufos = difficulty.get("num_ufos", 2)
+	min_ufo_speed = difficulty.get("min_ufo_speed", 100)
+	max_ufo_speed = difficulty.get("max_ufo_speed", 200)
 
 	for n in num_ufos:
 		var ufo = create_ufo(n)
@@ -106,9 +91,5 @@ func spawn_ufos() -> Array:
 	return ufos
 
 
-func new_game() -> void:
-	$AmbientSFX.play()
-	spawn_ufos()
-	$Player.position = $StartPosition.position
-	$Player.show()
+
 

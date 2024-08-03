@@ -1,18 +1,40 @@
 extends Node
 
-@export var shoot_the_aliens: PackedScene
-@export var cross_the_road: PackedScene
-@export var match_the_cards: PackedScene
+#@export var shoot_the_aliens: PackedScene
+#@export var cross_the_road: PackedScene
+#@export var match_the_cards: PackedScene
 
+var config = ConfigFile.new()
 var micro_games = []
 var current_micro_game
 var player_lives = 5
 
+
+class MicrogameInfo:
+	var game_name: String
+	var scene: PackedScene
+	var config: ConfigFile
+	var path: String
+
+
 func _ready() -> void:
 	# Collate all available micro games
-	micro_games.append(shoot_the_aliens)
-	micro_games.append(cross_the_road)
-	micro_games.append(match_the_cards)
+	config.load("res://main/config.ini")
+	for key in config.get_section_keys("microgame_paths"):
+		var path = config.get_value("microgame_paths", key)
+		var micro_game_info = MicrogameInfo.new()
+		micro_game_info.game_name = key
+		micro_game_info.path = path
+		micro_game_info.scene = load(path + "/scenes/Game/game.tscn")
+		var micro_game_config = ConfigFile.new()
+		print(path + "config.ini")
+		var err = micro_game_config.load(path + "config.ini")
+		if err != OK:
+			printerr("Failed to parse micro game config: {game_name} with error: {err}"
+				.format({"game_name": key, "err": err}))
+			continue
+		micro_game_info.config = micro_game_config
+		micro_games.append(micro_game_info)
 	$HUD.set_message("The Microgames will start in a few seconds")
 	$HUD.set_lives(player_lives)
 	$StartGameTimer.start()
@@ -22,12 +44,14 @@ func _ready() -> void:
 func _on_start_game_timer_timeout() -> void:
 	$StartGameTimer.stop()
 	var micro_game = micro_games.pick_random()
-	current_micro_game = micro_game.instantiate()
+	current_micro_game = micro_game.scene.instantiate()
+	current_micro_game.setup(micro_game.config, "hard")
 	current_micro_game.connect("game_finished", self._on_micro_game_finished)
 	$HUD.set_message(current_micro_game.directions)
 	add_child(current_micro_game)
-	if current_micro_game.timed:
-		$MicroGameTimer.start()
+	if current_micro_game.timed and current_micro_game.timeout:
+		$MicroGameTimer.start(current_micro_game.timeout)
+		#$MicroGameTimer.start()
 	
 
 func player_won() -> void:
@@ -44,8 +68,9 @@ func player_lost() -> void:
 
 
 # Triggered when microgame finishes
-func _on_micro_game_finished(_instance_id: int) -> void:
-	if current_micro_game.player_won:
+func _on_micro_game_finished(meta: Dictionary = {}) -> void:
+	print("Game finished: ", meta)
+	if current_micro_game.won:
 		player_won()
 	else:
 		player_lost()
