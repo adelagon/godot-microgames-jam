@@ -25,6 +25,7 @@ func new_game() -> void:
 ### End Overrides
 
 
+### Game logic
 func _ready() -> void:
 	new_game()
 

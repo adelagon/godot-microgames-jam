@@ -1,18 +1,15 @@
-extends Node
+extends Microgame
 
-const directions = "Match the cards!"
-const timed = false
-var num_pairs = 6
+var num_pairs
 var matched_pairs = 0
-var player_won = false
 var selected_card # card that currently has the focus
 var latest_card   # the latest card that was flipped
 var previous_card # the previous card that was flipped
 
-signal game_finished
-
+### Overrides
 func _ready() -> void:
 	# Set the table
+	num_pairs = difficulty.get("num_pairs", 2)
 	$Table.pairs = num_pairs
 	var cards = $Table/TableContainer/CardGridContainer.get_children()
 	# Set focus to the first card
@@ -20,8 +17,16 @@ func _ready() -> void:
 	for card in cards:
 		card.connect("card_focus_entered", _on_card_selected)
 		card.connect("card_focus_exited", _on_card_unselected)
+	new_game()
 
 
+func game_over(_meta: Dictionary = {}) -> void:
+	won = true
+	super.game_over({"score": matched_pairs})
+### End Overrides
+
+
+### Game logic
 func _on_card_selected(card: TextureRect) -> void:
 	selected_card = card
 
@@ -65,6 +70,4 @@ func _process(_delta) -> void:
 			$SFXMismatch.play()
 
 
-func game_over() -> void:
-	player_won = true
-	game_finished.emit(self.get_instance_id())
+
