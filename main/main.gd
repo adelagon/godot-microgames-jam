@@ -45,7 +45,7 @@ func _on_start_game_timer_timeout() -> void:
 	$StartGameTimer.stop()
 	var micro_game = micro_games.pick_random()
 	current_micro_game = micro_game.scene.instantiate()
-	current_micro_game.setup(micro_game.config, "hard")
+	current_micro_game.setup(micro_game.config, "easy")
 	current_micro_game.connect("game_finished", self._on_micro_game_finished)
 	$HUD.set_message(current_micro_game.directions)
 	add_child(current_micro_game)

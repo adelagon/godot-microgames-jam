@@ -29,7 +29,6 @@ signal game_finished
 
 
 func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
-	print("Setting up microgame: ", config)
 	config = cfg
 	directions = config.get_value("game", "direction")
 	timed = config.get_value("game", "timed")

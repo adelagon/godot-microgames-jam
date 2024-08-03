@@ -80,7 +80,6 @@ func create_ufo(iter: int) -> Path2D:
 
 func spawn_ufos() -> Array:
 	# Default Values
-	print(difficulty)
 	num_ufos = difficulty.get("num_ufos", 2)
 	min_ufo_speed = difficulty.get("min_ufo_speed", 100)
 	max_ufo_speed = difficulty.get("max_ufo_speed", 200)
