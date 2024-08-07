@@ -68,6 +68,3 @@ func _process(_delta) -> void:
 		else:
 			previous_card.hide_card = true
 			$SFXMismatch.play()
-
-
-

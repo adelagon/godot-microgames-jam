@@ -43,4 +43,3 @@ func _process(delta) -> void:
 	# Clamp within the screen
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
-

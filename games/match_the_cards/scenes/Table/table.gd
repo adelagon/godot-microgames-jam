@@ -46,4 +46,3 @@ func initialize_table(n: int) -> void:
 
 func _ready() -> void:
 	load_deck()
-

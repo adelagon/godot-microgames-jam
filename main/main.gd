@@ -97,7 +97,3 @@ func game_over() -> void:
 	$MicroGameTransitionTimer.stop()
 	$MicroGameTimer.stop()
 	$StartGameTimer.stop()
-
-
-
-

@@ -88,7 +88,3 @@ func spawn_ufos() -> Array:
 		var ufo = create_ufo(n)
 		add_child(ufo)
 	return ufos
-
-
-
-

@@ -37,4 +37,3 @@ func _on_player_crossed() -> void:
 
 func _on_player_hit() -> void:
 	game_over()
-
