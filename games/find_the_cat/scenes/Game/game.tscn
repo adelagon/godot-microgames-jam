@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpi40c8p47vib"]
+
+[ext_resource type="Script" path="res://games/find_the_cat/scenes/Game/game.gd" id="1_tklqu"]
+[ext_resource type="PackedScene" uid="uid://dfsa50rgfxkmw" path="res://games/find_the_cat/scenes/Alley/alley.tscn" id="2_37sdb"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_tklqu")
+
+[node name="Alley" parent="." instance=ExtResource("2_37sdb")]

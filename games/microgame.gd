@@ -27,7 +27,7 @@ var won: bool:
 		
 signal game_finished
 
-
+### Microgame commons
 func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
 	config = cfg
 	directions = config.get_value("game", "direction")
@@ -43,15 +43,16 @@ func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
 
 func new_game() -> void:
 	start_time = Time.get_unix_time_from_system()
-	print("Game started at: ", start_time)
+	print_debug("Game started at: ", start_time)
 
 
 func game_over(meta: Dictionary = {}) -> void:
 	end_time = Time.get_unix_time_from_system()
 	var time_elapsed = end_time - start_time
-	print("Game ended at: ", Time.get_unix_time_from_system())
-	print("Time elapsed: ", end_time - start_time)
+	print_debug("Game ended at: ", Time.get_unix_time_from_system())
+	print_debug("Time elapsed: ", end_time - start_time)
 	meta['time_elapsed'] = time_elapsed
 	meta['won'] = won
 	meta['instance_id'] = self.get_instance_id()
 	game_finished.emit(meta)
+### End Micrograme commons

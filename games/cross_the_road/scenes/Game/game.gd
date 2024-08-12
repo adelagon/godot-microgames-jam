@@ -16,8 +16,8 @@ func game_over(_meta: Dictionary = {}) -> void:
 
 
 func new_game() -> void:
-	$Highway.vehicle_speed = difficulty.get("vehicle_speed")
-	$Highway.max_vehicles_on_screen = difficulty.get("max_vehicles_on_screen")
+	$Highway.vehicle_speed = difficulty.get("vehicle_speed", 100)
+	$Highway.max_vehicles_on_screen = difficulty.get("max_vehicles_on_screen", 10)
 	$Highway.connect("player_crossed", _on_player_crossed)
 	$Player.position = $StartPosition.position
 	$Player.connect("player_hit", _on_player_hit)

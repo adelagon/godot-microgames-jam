@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dymxe0d8rqtpl"]
+
+[ext_resource type="Script" path="res://games/find_the_cat/scenes/Cat/cat.gd" id="1_ygoyb"]
+
+[node name="Cat" type="Area2D"]
+script = ExtResource("1_ygoyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
