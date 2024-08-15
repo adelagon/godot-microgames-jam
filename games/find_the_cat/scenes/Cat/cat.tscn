@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://games/find_the_cat/scenes/Cat/cat.gd" id="1_ygoyb"]
 
 [node name="Cat" type="Area2D"]
+use_parent_material = true
 script = ExtResource("1_ygoyb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true

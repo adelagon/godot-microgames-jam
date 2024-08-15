@@ -29,6 +29,7 @@ func _physics_process(delta) -> void:
 
 func _ready() -> void:
 	pass
+	#visible = false
 
 
 func _process(delta: float) -> void:
