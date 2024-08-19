@@ -42,4 +42,10 @@ static func get_collision_from_texture(texture: ImageTexture) -> Array:
 		collision_polygon.position -= texture.get_size() / 2
 		polygons.append(collision_polygon)
 	return polygons
+	
+
+static func is_within_range(from: Node2D, to: Node2D, minimum: float) -> bool:
+	if from.global_position.distance_to(to.global_position) <= minimum:
+		return true
+	return false
 ### End Utility functions

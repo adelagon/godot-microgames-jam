@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfsa50rgfxkmw"]
+
+[ext_resource type="Script" path="res://games/find_the_cat/scenes/Alley/alley.gd" id="1_c66r4"]
+[ext_resource type="Shader" path="res://games/find_the_cat/scenes/Alley/alley.gdshader" id="1_kh4i0"]
+[ext_resource type="PackedScene" uid="uid://dymxe0d8rqtpl" path="res://games/find_the_cat/scenes/Cat/cat.tscn" id="2_h6wnl"]
+[ext_resource type="Texture2D" uid="uid://c0f5m3khe4s1h" path="res://games/find_the_cat/assets/sprites/alley.png" id="2_ric2f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_prcxu"]
+shader = ExtResource("1_kh4i0")
+
+[node name="Alley" type="TextureRect"]
+material = SubResource("ShaderMaterial_prcxu")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ric2f")
+script = ExtResource("1_c66r4")
+cat_scene = ExtResource("2_h6wnl")
