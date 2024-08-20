@@ -7,7 +7,7 @@ void vertex() {
 void fragment() {
 	// Called for every pixel the material is visible on.
 	COLOR = texture(TEXTURE, UV);
-    float avg = (COLOR.r + COLOR.g + COLOR.b) / 5.0;
+    float avg = (COLOR.r + COLOR.g + COLOR.b) / 10.0;
     COLOR.rgb = vec3(avg);
 }
 
