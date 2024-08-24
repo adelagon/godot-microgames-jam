@@ -1,6 +1,7 @@
 extends Microgame
 
 var _hunted_cat: Cat
+var _cat_found = false
 
 @onready var static_alley = $RGBAlley
 @onready var alley = $BackBufferCopy/MonochromeAlley
@@ -26,18 +27,21 @@ func game_over(_meta: Dictionary = {}) -> void:
 ### End Overrides
 
 
-
 func _on_cat_found() -> void:
 	print_debug("Cat has been found!")
 	# Snap flashlight to center
 	flashlight.enabled = false
 	flashlight.global_position = _hunted_cat.global_position
 	won = true
+	_cat_found = true
 	game_over()
 
 
 func _process(_delta: float) -> void:
 	# Check the distance between the hunted_cat and the highlight
 	# the minimum distance is based on 25% flashlight's with
+	if _cat_found:
+		return
+
 	if Utils.is_within_range(_hunted_cat, flashlight, flashlight.texture.get_width() * 0.25):
 		_on_cat_found()

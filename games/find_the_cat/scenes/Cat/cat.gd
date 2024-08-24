@@ -16,12 +16,10 @@ var cat_name: String:
 	set(value):
 		_cat_name = value
 
-var _size
 var size: Vector2i: 
 	get:
 		return $Sprite2D.texture.get_size()
 
-var _rect
 var rect: Rect2:
 	get:
 		return Rect2(position, size)
