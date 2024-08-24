@@ -1,9 +1,5 @@
 extends Node
 
-#@export var shoot_the_aliens: PackedScene
-#@export var cross_the_road: PackedScene
-#@export var match_the_cards: PackedScene
-
 var config = ConfigFile.new()
 var micro_games = []
 var current_micro_game

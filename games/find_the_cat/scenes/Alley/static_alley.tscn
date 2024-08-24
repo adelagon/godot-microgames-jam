@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://gjev1nasmshi"]
+
+[ext_resource type="Texture2D" uid="uid://dq5syam18woqd" path="res://games/find_the_cat/assets/sprites/alley_background.png" id="1_i4g3n"]
+[ext_resource type="Script" path="res://games/find_the_cat/scenes/Alley/static_alley.gd" id="2_rokep"]
+
+[node name="StaticAlley" type="TextureRect"]
+texture = ExtResource("1_i4g3n")
+script = ExtResource("2_rokep")

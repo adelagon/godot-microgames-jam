@@ -1,25 +1,4 @@
-extends Area2D
-class_name Highlight
-
-var _circle: CircleShape2D
-
-var _highlight_radius: float
-var highlight_radius: float: 
-	get:
-		return _highlight_radius
-	set(value):
-		_highlight_radius = value
-		_circle = CircleShape2D.new()
-		_circle.radius = value
-		_rect = _circle.get_rect()
-		var collision = CollisionShape2D.new()
-		collision.shape = _circle
-		add_child(collision)
-
-var _rect: Rect2
-var rect: Rect2:
-	get:
-		return Rect2(global_position, _circle.get_rect().size)
+extends Sprite2D
 
 var _enabled = true
 var enabled: bool:
@@ -27,12 +6,6 @@ var enabled: bool:
 		return _enabled
 	set(value):
 		_enabled = value
-		
-
-
-func _draw() -> void:
-	var white : Color = Color.WHITE
-	draw_circle(Vector2.ZERO, highlight_radius, white)
 
 
 func _process(delta: float) -> void:

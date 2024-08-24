@@ -25,17 +25,3 @@ var _rect
 var rect: Rect2:
 	get:
 		return Rect2(position, size)
-
-var speed = 5.0
-func _physics_process(delta) -> void:
-	pass
-	#position += -transform.y * speed * delta
-
-
-func _ready() -> void:
-	pass
-	#visible = false
-
-
-func _process(delta: float) -> void:
-	pass

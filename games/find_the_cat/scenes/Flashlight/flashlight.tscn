@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvf5e7pivo1sg"]
+
+[ext_resource type="Texture2D" uid="uid://t2hpnl5bncq3" path="res://games/find_the_cat/assets/sprites/flashlight.png" id="1_ql1n8"]
+
+[node name="Flashlight" type="Sprite2D"]
+texture = ExtResource("1_ql1n8")
