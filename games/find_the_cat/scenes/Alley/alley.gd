@@ -57,7 +57,7 @@ func place_cat(cat: Cat, avoid: Rect2) -> void:
 	# Bound the cat to certain position basing on texture size.
 	# This prevents the cats from being spawned outside the viewport
 	var screen_size = get_viewport_rect().size
-	var texture_size = cat.sprite.get_size() / 2
+	var texture_size = cat.sprite.get_size() / 3
 	# Set random position
 	var rand_x = randf_range(texture_size.x, screen_size.x - texture_size.x)
 	var rand_y = randf_range(texture_size.y, screen_size.y - texture_size.y)
