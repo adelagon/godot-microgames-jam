@@ -20,12 +20,15 @@ var _cats = []
 var cats: Array:
 	get:
 		return _cats
-# Selected cat to be hunted
-var hunted_cat: Cat:
+# Set the darkness based on difficulty
+var _darkness = 0.0
+var darkness: float:
 	get:
-		return _hunted_cat
+		return _darkness
 	set(value):
-		_hunted_cat = value
+		_darkness = value
+		material.set_shader_parameter("darkness", value)
+
 # Rect2 that needs to be avoided when placing cats
 var _avoid
 var avoid: Rect2:

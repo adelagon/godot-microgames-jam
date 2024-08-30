@@ -1,13 +1,11 @@
 shader_type canvas_item;
 
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
+uniform float darkness = 5;
 
 void fragment() {
 	// Called for every pixel the material is visible on.
 	COLOR = texture(TEXTURE, UV);
-    float avg = (COLOR.r + COLOR.g + COLOR.b) / 20.0;
+    float avg = (COLOR.r + COLOR.g + COLOR.b) / darkness;
     COLOR.rgb = vec3(avg);
 }
 

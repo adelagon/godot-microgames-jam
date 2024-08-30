@@ -14,15 +14,37 @@ shader = ExtResource("5_tbbq6")
 script = ExtResource("1_tklqu")
 
 [node name="RGBAlley" parent="." instance=ExtResource("3_afohn")]
-offset_right = 640.0
-offset_bottom = 480.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
 rect = Rect2(0, 0, 640, 480)
 
 [node name="MonochromeAlley" parent="BackBufferCopy" instance=ExtResource("2_37sdb")]
-offset_right = 640.0
-offset_bottom = 480.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -240.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Flashlight" parent="BackBufferCopy" instance=ExtResource("4_tvksc")]
 material = SubResource("ShaderMaterial_fwp3k")

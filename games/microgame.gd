@@ -42,11 +42,16 @@ func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
 
 
 func new_game() -> void:
+	# new_game() should be triggered manually by each microgame after all its
+	# internal setup has been finished.
 	start_time = Time.get_unix_time_from_system()
 	print_debug("Game started at: ", start_time)
+	# TODO: placeholder for implementing the game instruction UI
 
 
 func game_over(meta: Dictionary = {}) -> void:
+	# game_over() should be triggered manually by each microgame once the 
+	# game is finished regardless of the player success outcome
 	end_time = Time.get_unix_time_from_system()
 	var time_elapsed = end_time - start_time
 	print_debug("Game ended at: ", Time.get_unix_time_from_system())

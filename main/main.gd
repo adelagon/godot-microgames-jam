@@ -23,7 +23,6 @@ func _ready() -> void:
 		micro_game_info.path = path
 		micro_game_info.scene = load(path + "/scenes/Game/game.tscn")
 		var micro_game_config = ConfigFile.new()
-		print(path + "config.ini")
 		var err = micro_game_config.load(path + "config.ini")
 		if err != OK:
 			printerr("Failed to parse micro game config: {game_name} with error: {err}"
@@ -47,8 +46,7 @@ func _on_start_game_timer_timeout() -> void:
 	add_child(current_micro_game)
 	if current_micro_game.timed and current_micro_game.timeout:
 		$MicroGameTimer.start(current_micro_game.timeout)
-		#$MicroGameTimer.start()
-	
+
 
 func player_won() -> void:
 	$HUD.set_message("SUCCESS! Get ready for the next game!")

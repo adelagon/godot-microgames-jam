@@ -10,9 +10,11 @@ var _cat_found = false
 ### Overrides
 func _ready() -> void:
 	var cat_types =  Utils.load_sprite_directory("res://games/find_the_cat/assets/sprites/cats/", true)
+	# Set alley darkness
+	alley.darkness = difficulty.get("darkness", 10.0)
 	# Provide the flashlight's Rect2() that needs to be avoided when placing cats
 	flashlight.global_position = get_viewport().size / 2
-	# NOTE: I'm creating a Rect2 instance here as get_rect() position seems to be stuck
+	# NOTE: I'm creating a Rect2 instance here as get_rect() position seems to be stuck at (-69, -69)
 	alley.avoid = Rect2(flashlight.global_position, flashlight.get_rect().size)
 	# create the cats
 	alley.cat_types = cat_types
@@ -38,10 +40,10 @@ func _on_cat_found() -> void:
 
 
 func _process(_delta: float) -> void:
-	# Check the distance between the hunted_cat and the highlight
-	# the minimum distance is based on 25% flashlight's with
 	if _cat_found:
 		return
 
+	# Check the distance between the hunted_cat and the highlight
+	# the minimum distance is based on 25% flashlight's with
 	if Utils.is_within_range(_hunted_cat, flashlight, flashlight.texture.get_width() * 0.25):
 		_on_cat_found()
