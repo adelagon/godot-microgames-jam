@@ -1,4 +1,4 @@
-extends Microgame
+extends MicroGame
 
 var _hunted_cat: Cat
 var _cat_found = false

@@ -1,5 +1,5 @@
 extends Node
-class_name Microgame
+class_name MicroGame
 
 var config: ConfigFile
 var start_time: float
@@ -39,6 +39,7 @@ func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
 		difficulty[key] = config.get_value(section_name, key)
 		if key == "timeout" and timed:
 			timeout = config.get_value(section_name, key)
+	print(difficulty)
 
 
 func new_game() -> void:
@@ -59,5 +60,5 @@ func game_over(meta: Dictionary = {}) -> void:
 	meta['time_elapsed'] = time_elapsed
 	meta['won'] = won
 	meta['instance_id'] = self.get_instance_id()
-	game_finished.emit(meta)
+	game_finished.emit(self, meta)
 ### End Micrograme commons

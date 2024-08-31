@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://0nhvcldf2wbw"]
+
+[ext_resource type="Texture2D" uid="uid://bd3vrqddry7sc" path="res://main/UI/TransitionPage/assets/background.png" id="1_eleea"]
+[ext_resource type="Script" path="res://main/UI/TransitionPage/transition_page.gd" id="1_k12tl"]
+[ext_resource type="PackedScene" uid="uid://bw11e3cnr5o77" path="res://main/UI/Life/life.tscn" id="2_s2jdc"]
+
+[node name="TransitionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k12tl")
+life_scene = ExtResource("2_s2jdc")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+texture = ExtResource("1_eleea")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Message" type="Label" parent="CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.205117, 0.205117, 0.205117, 1)
+theme_override_font_sizes/font_size = 32
+text = "Placeholder Text"
+horizontal_alignment = 1
+
+[node name="Lives" type="Label" parent="CenterContainer/GridContainer"]
+layout_mode = 2
+text = "Lives Left"
+horizontal_alignment = 1
+
+[node name="LivesContainer" type="HBoxContainer" parent="CenterContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1

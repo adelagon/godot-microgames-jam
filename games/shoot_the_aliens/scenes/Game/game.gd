@@ -1,4 +1,4 @@
-extends Microgame
+extends MicroGame
 
 @export var ufo_scene: PackedScene
 

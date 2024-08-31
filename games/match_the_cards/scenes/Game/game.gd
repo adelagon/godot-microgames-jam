@@ -1,4 +1,4 @@
-extends Microgame
+extends MicroGame
 
 var num_pairs
 var matched_pairs = 0

@@ -1,4 +1,4 @@
-extends Microgame
+extends MicroGame
 
 var game_ended = false
 
