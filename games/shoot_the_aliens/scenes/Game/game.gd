@@ -13,7 +13,7 @@ var game_ended = false
 
 
 ### Overrides
-func game_over(_meta: Dictionary = {}) -> void:
+func game_over(meta: Dictionary = {}) -> void:
 	if not game_ended:
 		game_ended = true
 		$Player.disable_movement = true
@@ -21,7 +21,8 @@ func game_over(_meta: Dictionary = {}) -> void:
 			$WonSFX.play()
 		else:
 			$LostSFX.play()
-		super.game_over({"score": score})
+		meta['score'] = score
+		super.game_over(meta)
 
 
 func new_game() -> void:

@@ -3,8 +3,6 @@ extends TextureRect
 @export var cat_scene: PackedScene
 # List of all Rect2 of cats that has been properly positioned
 var _placed_cats = []
-# Selected Cat to find
-var _hunted_cat = Cat
 
 
 # Dictionary of Cat Types

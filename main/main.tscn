@@ -12,11 +12,7 @@ transition_page_scene = ExtResource("3_0fpb5")
 [node name="MicroGameTimer" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="MicroGameTransitionTimer" type="Timer" parent="."]
-wait_time = 2.0
-
 [node name="TickTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="MicroGameTimer" to="." method="_on_micro_game_timer_timeout"]
-[connection signal="timeout" from="MicroGameTransitionTimer" to="." method="_on_micro_game_transition_timer_timeout"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

@@ -16,7 +16,7 @@ var end_game: bool:
 		return _end_game
 	set(value):
 		if value:
-			game_over({"timeout": true})
+			game_over({'noemit': true})
 ### Set this property if player wins or not
 var _won = false
 var won: bool:
@@ -39,7 +39,6 @@ func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
 		difficulty[key] = config.get_value(section_name, key)
 		if key == "timeout" and timed:
 			timeout = config.get_value(section_name, key)
-	print(difficulty)
 
 
 func new_game() -> void:
@@ -57,6 +56,8 @@ func game_over(meta: Dictionary = {}) -> void:
 	var time_elapsed = end_time - start_time
 	print_debug("Game ended at: ", Time.get_unix_time_from_system())
 	print_debug("Time elapsed: ", end_time - start_time)
+	if meta.get("noemit") == true:
+		return
 	meta['time_elapsed'] = time_elapsed
 	meta['won'] = won
 	meta['instance_id'] = self.get_instance_id()
