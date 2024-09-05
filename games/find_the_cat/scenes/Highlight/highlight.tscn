@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjvwm1740u1wq"]
+
+[ext_resource type="Script" path="res://games/find_the_cat/scenes/Highlight/highlight.gd" id="1_cjxsl"]
+
+[node name="Highlight" type="Area2D"]
+script = ExtResource("1_cjxsl")
