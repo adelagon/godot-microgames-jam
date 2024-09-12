@@ -64,8 +64,18 @@ func setup_menu() -> void:
 func setup_session(meta: Dictionary):
 	# Prepare the micro games
 	_micro_games.shuffle()
-	for i in config.get_value("main", "session_length", 10):
-		var micro_game = _micro_games.pick_random()
+	var session_length = config.get_value("main", "session_length", 10)
+	var game_session = []
+	if len(_micro_games) <= session_length:
+		game_session.append_array(_micro_games)
+		# Fill gap with random games
+		for i in session_length - len(_micro_games):
+			game_session.append(_micro_games.pick_random())
+	else:
+		for i in session_length:
+			game_session.append(_micro_games.pick_random())
+
+	for micro_game in game_session:
 		var micro_game_instance = micro_game.scene.instantiate()
 		micro_game_instance.setup(micro_game.config, meta.get("difficulty"))
 		micro_game_instance.connect("game_finished", self._on_micro_game_finished)

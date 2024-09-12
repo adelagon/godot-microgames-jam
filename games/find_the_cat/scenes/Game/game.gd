@@ -19,9 +19,14 @@ func _ready() -> void:
 	# create the cats
 	alley.cat_types = cat_types
 	_hunted_cat = alley.cats.pick_random()
+	metadata.append(_hunted_cat.sprite)
 	# recreate the cats in RGB in the static layer
 	static_alley.cats = alley.cats
-	super.new_game()
+	new_game()
+
+
+func new_game() -> void:
+	await super.new_game()
 
 
 func game_over(_meta: Dictionary = {}) -> void:

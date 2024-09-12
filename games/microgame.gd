@@ -4,10 +4,12 @@ class_name MicroGame
 var config: ConfigFile
 var start_time: float
 var end_time: float
-var directions: String       # Short description of the micro game
-var timed: bool              # flag wether the game is timed or not
-var timeout: int             # determines how long the micro game lasts
-var difficulty: Dictionary   # difficulty settings
+var _directions: Directions   # Short description of the micro game
+var timed: bool               # flag wether the game is timed or not
+var timeout: int              # determines how long the micro game lasts
+var difficulty: Dictionary    # difficulty settings
+var metadata: Array           # Any game metadata that will be shown in the directions scene
+
 
 ### Setting this property to true should forcefully end the game (ie. Timer ran out)
 var _end_game = false
@@ -24,13 +26,14 @@ var won: bool:
 		return _won
 	set(value):
 		_won = value
-		
+
+
 signal game_finished
 
 ### Microgame commons
 func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
 	config = cfg
-	directions = config.get_value("game", "direction")
+	#directions = config.get_value("game", "direction")
 	timed = config.get_value("game", "timed")
 	# Set difficulty
 	var section_name = "difficulty." + difficulty_selection
@@ -44,9 +47,42 @@ func setup(cfg: ConfigFile, difficulty_selection: String = "easy") -> void:
 func new_game() -> void:
 	# new_game() should be triggered manually by each microgame after all its
 	# internal setup has been finished.
+	show_directions()
+	# Give player two seconds to understand the directions
+	await get_tree().create_timer(2).timeout
+	hide_directions()
 	start_time = Time.get_unix_time_from_system()
 	print_debug("Game started at: ", start_time)
-	# TODO: placeholder for implementing the game instruction UI
+
+func show_directions() -> void:
+	# Show Game Details
+	_directions = preload("res://games/directions.tscn").instantiate()
+	_directions.game_title = config.get_value("game", "name")
+	_directions.game_directions = config.get_value("game", "direction")
+	# Show Controls
+	var controls = []
+	for control in config.get_value("game", "joypad_controls"):
+		# TODO: show default xbox controls for now, we should autodetect the 
+		#       control type here first
+		var control_type = "xbox"
+		var control_res = "res://games/assets/controls/{0}/{0}_{1}.png".format([control_type, control])
+		var control_texture = Utils.load_texture_rect_from_image(control_res)
+		controls.append(control_texture)
+	_directions.game_controls = controls
+	# Show Metadata
+	var meta = []
+	for m in metadata:
+		if m is ImageTexture:
+			var texture_rect = TextureRect.new()
+			texture_rect.texture = m
+			meta.append(texture_rect)
+	_directions.game_metadata = meta
+	add_child(_directions)
+	_directions.show()
+	
+
+func hide_directions() -> void:
+	_directions.hide()
 
 
 func game_over(meta: Dictionary = {}) -> void:

@@ -28,10 +28,6 @@ func _process(delta) -> void:
 
 	# Proceed with the path
 	path_follow.progress += speed * delta
-	
-	
-	if $AnimatedSprite2D.animation == "explode":
-		print("exploded")
 
 
 func _on_area_entered(_area: Area2D) -> void:

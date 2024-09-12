@@ -20,6 +20,10 @@ func _ready() -> void:
 	new_game()
 
 
+func new_game() -> void:
+	await super.new_game()
+
+
 func game_over(_meta: Dictionary = {}) -> void:
 	won = true
 	super.game_over({"score": matched_pairs})

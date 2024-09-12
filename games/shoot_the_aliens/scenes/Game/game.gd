@@ -26,11 +26,11 @@ func game_over(meta: Dictionary = {}) -> void:
 
 
 func new_game() -> void:
+	await super.new_game()
 	$AmbientSFX.play()
 	spawn_ufos()
 	$Player.position = $StartPosition.position
 	$Player.show()
-	super.new_game()
 ### End Overrides
 
 ### Game logic

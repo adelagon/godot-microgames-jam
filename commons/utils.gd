@@ -6,9 +6,6 @@ static func clamp_texture_to_screen(texture: ImageTexture, parent: Variant):
 	var screen_size = parent.get_viewport_rect().size
 	var texture_size = texture.get_size()
 	var sprite_size = texture_size * parent.get_scale()
-	print(screen_size)
-	print(texture_size)
-	print(sprite_size)
 	parent.position = parent.position.clamp(sprite_size / 2, screen_size - sprite_size / 2)
 
 
@@ -48,4 +45,13 @@ static func is_within_range(from: Node2D, to: Node2D, minimum: float) -> bool:
 	if from.global_position.distance_to(to.global_position) <= minimum:
 		return true
 	return false
+	
+	
+static func load_texture_rect_from_image(res: String) -> TextureRect:
+	var texture_rect = TextureRect.new()
+	var image = load(res).get_image()
+	image.shrink_x2()
+	texture_rect.texture = ImageTexture.create_from_image(image)
+	return texture_rect
+
 ### End Utility functions
