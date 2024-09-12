@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://br3s8yittnnfd"]
+[gd_scene load_steps=7 format=3 uid="uid://br3s8yittnnfd"]
 
 [ext_resource type="PackedScene" uid="uid://seflermranpj" path="res://games/match_the_cards/scenes/Table/table.tscn" id="1_cewn7"]
 [ext_resource type="Script" path="res://games/match_the_cards/scenes/Game/game.gd" id="1_nblhb"]
 [ext_resource type="AudioStream" uid="uid://bo0wdwxrlraqp" path="res://games/match_the_cards/assets/sounds/move.ogg" id="3_qd5eq"]
 [ext_resource type="AudioStream" uid="uid://bdky2veix3s2s" path="res://games/match_the_cards/assets/sounds/match.ogg" id="4_dsgb8"]
 [ext_resource type="AudioStream" uid="uid://dsxecxuxq5mgs" path="res://games/match_the_cards/assets/sounds/mismatch.ogg" id="5_1cgd7"]
+[ext_resource type="AudioStream" uid="uid://ct4pdu02yei3d" path="res://games/match_the_cards/assets/sounds/background_music.mp3" id="6_73t6o"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_nblhb")
@@ -19,3 +20,7 @@ stream = ExtResource("4_dsgb8")
 
 [node name="SFXMismatch" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_1cgd7")
+
+[node name="SFXBackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_73t6o")
+autoplay = true

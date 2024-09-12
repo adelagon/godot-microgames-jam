@@ -47,6 +47,7 @@ func _on_menu_button_pressed(button_name: String, meta: Dictionary = {}):
 	match button_name:
 		"new_game":
 			_menu.hide()
+			$BackgroundMusic.stop()
 			setup_session(meta)
 		"quit":
 			get_tree().quit()

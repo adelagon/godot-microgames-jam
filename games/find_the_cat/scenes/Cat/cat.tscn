@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dymxe0d8rqtpl"]
+[gd_scene load_steps=3 format=3 uid="uid://dymxe0d8rqtpl"]
 
 [ext_resource type="Script" path="res://games/find_the_cat/scenes/Cat/cat.gd" id="1_ygoyb"]
+[ext_resource type="AudioStream" uid="uid://c7tc8vwv7hgy5" path="res://games/find_the_cat/assets/audio/meow.mp3" id="2_c05hi"]
 
 [node name="Cat" type="Area2D"]
 use_parent_material = true
@@ -8,3 +9,7 @@ script = ExtResource("1_ygoyb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 use_parent_material = true
+
+[node name="Meow" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_c05hi")
+volume_db = 10.0

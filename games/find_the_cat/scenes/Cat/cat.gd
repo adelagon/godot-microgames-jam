@@ -23,3 +23,8 @@ var size: Vector2i:
 var rect: Rect2:
 	get:
 		return Rect2(position, size)
+		
+
+var meow:
+	get:
+		$Meow.play()

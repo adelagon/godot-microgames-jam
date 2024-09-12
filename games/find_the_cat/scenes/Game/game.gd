@@ -30,6 +30,7 @@ func new_game() -> void:
 
 
 func game_over(_meta: Dictionary = {}) -> void:
+	$BackgroundMusic.stop()
 	super.game_over()
 ### End Overrides
 
@@ -41,6 +42,7 @@ func _on_cat_found() -> void:
 	flashlight.global_position = _hunted_cat.global_position
 	won = true
 	_cat_found = true
+	_hunted_cat.meow
 	game_over()
 
 

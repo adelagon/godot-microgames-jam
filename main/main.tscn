@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx4v1g1dd80c"]
+[gd_scene load_steps=5 format=3 uid="uid://bx4v1g1dd80c"]
 
 [ext_resource type="Script" path="res://main/main.gd" id="1_68gmr"]
 [ext_resource type="PackedScene" uid="uid://7a7877qgtqq5" path="res://main/UI/Menu/menu.tscn" id="2_avgvw"]
 [ext_resource type="PackedScene" uid="uid://0nhvcldf2wbw" path="res://main/UI/TransitionPage/transition_page.tscn" id="3_0fpb5"]
+[ext_resource type="AudioStream" uid="uid://ciloohjvfbsff" path="res://main/assets/menu_background_music.mp3" id="4_lrfh7"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_68gmr")
@@ -13,6 +14,10 @@ transition_page_scene = ExtResource("3_0fpb5")
 wait_time = 5.0
 
 [node name="TickTimer" type="Timer" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lrfh7")
+autoplay = true
 
 [connection signal="timeout" from="MicroGameTimer" to="." method="_on_micro_game_timer_timeout"]
 [connection signal="timeout" from="TickTimer" to="." method="_on_tick_timer_timeout"]

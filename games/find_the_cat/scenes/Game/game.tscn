@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpi40c8p47vib"]
+[gd_scene load_steps=9 format=3 uid="uid://dpi40c8p47vib"]
 
 [ext_resource type="Script" path="res://games/find_the_cat/scenes/Game/game.gd" id="1_tklqu"]
 [ext_resource type="PackedScene" uid="uid://dfsa50rgfxkmw" path="res://games/find_the_cat/scenes/Alley/alley.tscn" id="2_37sdb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bvf5e7pivo1sg" path="res://games/find_the_cat/scenes/Flashlight/flashlight.tscn" id="4_tvksc"]
 [ext_resource type="Script" path="res://games/find_the_cat/scenes/Flashlight/flashlight.gd" id="5_h3p7w"]
 [ext_resource type="Shader" path="res://games/find_the_cat/scenes/Flashlight/flashlight.gdshader" id="5_tbbq6"]
+[ext_resource type="AudioStream" uid="uid://cu5wixmar2x8a" path="res://games/find_the_cat/assets/audio/background_music.mp3" id="7_nt7em"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fwp3k"]
 shader = ExtResource("5_tbbq6")
@@ -49,3 +50,8 @@ metadata/_edit_use_anchors_ = true
 [node name="Flashlight" parent="BackBufferCopy" instance=ExtResource("4_tvksc")]
 material = SubResource("ShaderMaterial_fwp3k")
 script = ExtResource("5_h3p7w")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_nt7em")
+volume_db = 10.0
+autoplay = true

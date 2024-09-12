@@ -26,6 +26,7 @@ func new_game() -> void:
 
 func game_over(_meta: Dictionary = {}) -> void:
 	won = true
+	$SFXBackgroundMusic.stop()
 	super.game_over({"score": matched_pairs})
 ### End Overrides
 
